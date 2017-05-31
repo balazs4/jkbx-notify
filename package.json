@@ -4,20 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "kifli index.js --broker $BROKER --topic /jkbc/status"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/balazs4/songinfo.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "balazs4 <balazs4web@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/balazs4/songinfo/issues"
   },
   "homepage": "https://github.com/balazs4/songinfo#readme",
   "dependencies": {
-    "kifli": "^1.0.0"
+    "kifli": "^1.0.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
   }
 }
