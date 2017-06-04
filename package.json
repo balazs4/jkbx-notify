@@ -1,22 +1,22 @@
 {
-  "name": "songinfo",
+  "name": "jkbx-notify",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "kifli index.js --broker $BROKER --topic /jkbc/status"
+    "start": "kifli index.js --broker $BROKER --topic /jukebox/status"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/balazs4/songinfo.git"
+    "url": "git+https://github.com/balazs4/jkbx-notify.git"
   },
   "keywords": [],
   "author": "balazs4 <balazs4web@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/balazs4/songinfo/issues"
+    "url": "https://github.com/balazs4/jkbx-notify/issues"
   },
-  "homepage": "https://github.com/balazs4/songinfo#readme",
+  "homepage": "https://github.com/balazs4/jkbx-notify#readme",
   "dependencies": {
     "kifli": "^1.0.0",
     "request": "^2.81.0",
