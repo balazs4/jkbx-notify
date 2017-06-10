@@ -1,5 +1,5 @@
 {
-  "name": "jkbx-notify",
+  "name": "jukebox-songinfo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/balazs4/jkbx-notify.git"
+    "url": "git+https://github.com/balazs4/jukebox-songinfo.git"
   },
   "keywords": [],
   "author": "balazs4 <balazs4web@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/balazs4/jkbx-notify/issues"
+    "url": "https://github.com/balazs4/jukebox-songinfo/issues"
   },
-  "homepage": "https://github.com/balazs4/jkbx-notify#readme",
+  "homepage": "https://github.com/balazs4/jukebox-songinfo#readme",
   "dependencies": {
     "kifli": "^1.0.0",
     "request": "^2.81.0",
