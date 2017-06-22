@@ -40,6 +40,14 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
   if (item.statusCode === 200) {
     const { body: { artist, album, title, release_date, cover } } = item;
 
+    await publish('/jukebox/songinfo', {
+      title,
+      artist,
+      album,
+      release_date,
+      cover
+    });
+
     msg = {
       iconUrl: cover,
       title,
@@ -47,5 +55,5 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     };
   }
 
-  await publish('/jukebox/songinfo', msg);
+  await publish('/jukebox/notification', msg);
 };
