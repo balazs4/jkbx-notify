@@ -32,28 +32,27 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     ? `${prefix} on ${metadata['icy-name']}`
     : metadata['icy-name'];
 
-  let msg = {
-    title: term,
-    body: source
-  };
-
-  if (item.statusCode === 200) {
-    const { body: { artist, album, title, release_date, cover } } = item;
-
-    await publish('/jukebox/songinfo', {
-      title,
-      artist,
-      album,
-      release_date,
-      cover
+  if (item.statusCode !== 200) {
+    await publish('/jukebox/notification', {
+      title: term,
+      body: source
     });
-
-    msg = {
-      iconUrl: cover,
-      title,
-      body: [`by ${artist}`, `from ${album}`, release_date, source].join('\n')
-    };
+    return;
   }
 
-  await publish('/jukebox/notification', msg);
+  const { body: { artist, album, title, release_date, cover } } = item;
+
+  await publish('/jukebox/notification', {
+    iconUrl: cover,
+    title,
+    body: [`by ${artist}`, `from ${album}`, release_date, source].join('\n')
+  });
+
+  await publish('/jukebox/songinfo', {
+    title,
+    artist,
+    album,
+    release_date,
+    cover
+  });
 };
