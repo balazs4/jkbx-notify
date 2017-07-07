@@ -27,32 +27,21 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     simple: false
   });
 
-  const prefix = term == payload['media-title'] ? 'NEXT' : 'NOW';
-  const source = metadata['icy-name'] === 'STAR FM From Hell'
-    ? `${prefix} on ${metadata['icy-name']}`
-    : metadata['icy-name'];
+  const source = metadata['icy-name'];
 
-  if (item.statusCode !== 200) {
+  if (item.statusCode === 200) {
+    const { body: { artist, album, title, release_date, cover } } = item;
+
     await publish('/jukebox/notification', {
-      title: term,
-      body: source
+      iconUrl: cover,
+      title,
+      body: [`by ${artist}`, `from ${album}`, release_date, source].join('\n')
     });
     return;
   }
 
-  const { body: { artist, album, title, release_date, cover } } = item;
-
   await publish('/jukebox/notification', {
-    iconUrl: cover,
-    title,
-    body: [`by ${artist}`, `from ${album}`, release_date, source].join('\n')
-  });
-
-  await publish('/jukebox/songinfo', {
-    title,
-    artist,
-    album,
-    release_date,
-    cover
+    title: term,
+    body: source
   });
 };
