@@ -12,7 +12,8 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     return;
   }
 
-  const term = metadata['icy-title'];
+  const term =
+    metadata['icy-title'] || `${metadata['artist']} - ${metadata['title']}`;
 
   if (term === null || term === undefined || term === '') {
     return;
