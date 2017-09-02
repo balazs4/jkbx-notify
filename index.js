@@ -12,8 +12,14 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     return;
   }
 
+  const source = metadata['icy-name'];
   const term =
     metadata['icy-title'] || `${metadata['artist']} - ${metadata['title']}`;
+
+  publish('/jukebox/i3status', {
+    name: 'jukebox',
+    full_text: `${term} // ${source}`
+  });
 
   if (term === null || term === undefined || term === '') {
     return;
@@ -27,8 +33,6 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
     resolveWithFullResponse: true,
     simple: false
   });
-
-  const source = metadata['icy-name'];
 
   if (item.statusCode === 200) {
     const { body: { artist, album, title, release_date, cover } } = item;
