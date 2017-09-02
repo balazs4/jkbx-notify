@@ -19,7 +19,8 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
 
   const source = metadata['icy-name'];
   const term =
-    metadata['icy-title'] || `${metadata['artist']} - ${metadata['title']}`;
+    metadata['icy-title'] ||
+    [metadata['artist'], metadata['title']].filter(x => x).join(' - ');
 
   publish('/jukebox/i3status', {
     name: 'jukebox',
