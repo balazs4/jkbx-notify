@@ -4,6 +4,11 @@ const request = require('request-promise-native');
 module.exports = ({ publish }) => async ({ payload, topic }) => {
   const { metadata, filename } = payload;
 
+  await publish('/jukebox/i3status', {
+    name: 'jukebox',
+    full_text: ``
+  });
+
   if (filename === null || filename === undefined) {
     return; // probably the jukebox is about to stop, so just ignore it
   }
@@ -18,7 +23,7 @@ module.exports = ({ publish }) => async ({ payload, topic }) => {
 
   publish('/jukebox/i3status', {
     name: 'jukebox',
-    full_text: `${term} // ${source}`
+    full_text: [term, source].filter(x => x).join(' | ')
   });
 
   if (term === null || term === undefined || term === '') {
